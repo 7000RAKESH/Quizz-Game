@@ -9,17 +9,92 @@
       type="icon"
       href="images/Screenshot 2024-12-12 101745.png"
     />
-    <title>Quizz Game</title>
+    <title>Quizzy</title>
   </head>
   <body>
     <header>
       <h1><img src="images/Screenshot 2024-12-12 101745.png" alt="" /></h1>
-      <h1>Qizz Game</h1>
-      <div>
-        <button>Login</button>
-        <button>Signup</button>
+      <h1 class="name">Quizzy</h1>
+
+      <div class="buttons">
+        <button class="login">Login</button>
+        <button class="signup">Signup</button>
       </div>
     </header>
+
+    <main>
+      <form action="" id="loginform">
+        <h1>Login Form</h1>
+        <br /><br />
+        <!-- <label for="">Email :</label> -->
+        <input
+          type="email"
+          name=""
+          id="loginmail"
+          placeholder="Enter email address"
+          required
+        /><br />
+        <br />
+        <!-- <label for="">Password :</label> -->
+        <input
+          type="text"
+          name=""
+          id="loginpassword"
+          placeholder="Enter password"
+          required
+        /><br />
+        <br />
+        <button type="submit" name="" id="loginsub">submit</button>
+        <br />
+        <br />
+        <p>Not a member? <a href="#signupform" class="member">signup</a></p>
+      </form>
+      <form action="" id="signupform">
+        <h1>Signup Form</h1>
+        <br />
+        <!-- <label for="">User Name :</label> -->
+        <input
+          type="text"
+          name=""
+          placeholder="Enetr User Name"
+          id="username"
+        />
+        <br />
+
+        <!-- <label for="">Email :</label> -->
+        <input
+          type="text"
+          name=""
+          id="signupmail"
+          placeholder="Enter email address"
+        /><br />
+
+        <!-- <label for="">Password :</label> -->
+        <input
+          type="password"
+          name=""
+          id="signuppassword"
+          placeholder="Enter password"
+        /><br />
+        <!-- <label for="">Confirm Password :</label> -->
+        <input
+          type="password"
+          name=""
+          id="csignuppassword"
+          placeholder="Confirm password"
+        /><br />
+        <button type="submit" name="" id="signupsub">submit</button>
+        <br />
+        <p>Sign in as <a href="./home.html">Guest</a></p>
+      </form>
+      <div id="otpbox">
+        <h1>Enter OTP</h1>
+        <br />
+        <input type="number" name="" id="otp" placeholder="OTP" />
+        <br /><br />
+        <button type="submit" class="otpbut">Submit</button>
+      </div>
+    </main>
 
     <script src="script.js"></script>
   </body>
