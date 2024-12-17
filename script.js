@@ -27,68 +27,69 @@ signupSubmit.addEventListener("click", (e) => {
   if (password2 != confirmPass || password2 == "" || confirmPass == "") {
     alert("please enter correct password");
   } else if (password2 == confirmPass) {
-    let data = fetch("https://json-server-users.onrender.com/users");
-    data
-      .then((res) => {
-        return res.json();
-      })
-      .then((indata) => {
-        indata.forEach((element) => {
-          if (element.email == input2 && element.userName == userName) {
-            alert("user is already exist");
-          } else if (element.email != input2 && element.userName != userName) {
-            signup(userName, input2, password2);
-          }
-        });
-      });
+    userExist(userName, input2, password2);
   }
 });
 
-// function fetch(userName, input2, password2) {
-//   let data = fetch("http://localhost:3000/users");
-//   data
-//     .then((res) => {
-//       return res.json();
-//     })
-//     .then((indata) => {
-//       indata.forEach((element) => {
-//         if (element.email == input2 && element.userName == userName) {
-//           alert("user is already exist");
-//         } else if (element.email != input2 && element.userName != userName) {
-//           signup(userName, input2, password2);
-//         }
-//       });
-//     });
-// }
+async function userExist(userName, input2, password2) {
+  let response = await fetch("https://json-server-users.onrender.com/users");
+  if (!response.ok) {
+    throw new Error("Failed to fetch users");
+  }
 
-function signup(userName, input2, password2) {
+  let users = await response.json();
+  let userExists = users.some(
+    (user) => user.userName === userName && user.email === input2
+  );
+
+  if (userExists) {
+    alert("Username or email already exists. Please try a different one.");
+    return; // Stop further execution if user exists
+  } else {
+    alert("registered successfully");
+    signup(userName, input2, password2);
+  }
+}
+
+function signup(userName, email, password) {
   let otp = Math.floor(Math.random() * 10000);
-  alert(`otp : ${otp}`);
+  alert(`OTP : ${otp}`);
+
   signupForm.style.display = "none";
   otpBox.style.display = "flex";
+
   let otpBut = document.querySelector(".otpbut");
-  otpBut.addEventListener("click", () => {
+
+  otpBut.addEventListener("click", async () => {
     let otpInput = document.querySelector("#otp").value;
+
     if (otp == otpInput) {
-      alert("registered successfull");
-      let post = fetch("https://json-server-users.onrender.com/users", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({ userName, input2, password2 }),
-      });
-      let data = fetch("https://json-server-users.onrender.com/users");
-      data
-        .then((res) => {
-          return res.json();
-        })
-        .then((indata) => {
-          console.log(indata);
-        });
-      window.location.href = "./home.html";
+      alert("OTP verified. Registering...");
+
+      try {
+        let postResponse = await fetch(
+          "https://json-server-users.onrender.com/users",
+          {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify({ userName, email, password }),
+          }
+        );
+
+        if (postResponse.ok) {
+          alert("Registration successful!");
+          window.location.href = "./home.html";
+        } else {
+          alert("Failed to register. Please try again.");
+        }
+      } catch (error) {
+        console.error("Error during registration:", error);
+        alert("An error occurred during registration. Please try again.");
+      }
     } else {
-      alert("wrong otp");
+      alert("Wrong OTP. Please try again.");
     }
   });
 }
@@ -102,6 +103,7 @@ async function signin(input, password) {
   if (user) {
     alert("login successfull");
     window.location.href = "./home.html";
+    // window.open("./home.html");
   } else {
     alert("User not Found or Entered  Invalid Details ");
   }
