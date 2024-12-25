@@ -2,7 +2,10 @@
   margin: 0;
   padding: 0;
 }
-
+body {
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
 header {
   width: 100%;
   height: 4rem;
@@ -11,7 +14,9 @@ header {
   align-items: center;
   justify-content: space-between;
   position: fixed;
+  z-index: 100;
 }
+
 header h1 {
   width: 20%;
   border-radius: 2rem;
@@ -24,7 +29,7 @@ header h1 img {
   margin-top: 0.4rem;
   /* mix-blend-mode: color-burn; */
 }
-header div {
+header .buttons {
   width: 20%;
   height: 2.5rem;
   display: flex;
@@ -38,6 +43,9 @@ header button {
   border: none;
   background-color: #ffffff;
   font-weight: bold;
+}
+header button:hover {
+  opacity: 0.8;
 }
 
 /* body */
@@ -54,7 +62,7 @@ main {
 #loginform,
 #signupform {
   width: 35%;
-  height: 60vh;
+  height: auto;
   background-color: grey;
   display: flex;
   flex-direction: column;
@@ -63,26 +71,42 @@ main {
   align-items: center;
   justify-content: center;
 }
-#loginform input,
-#signupform input,
-#otpbox input {
-  width: 70%;
-  height: 10%;
-  border-radius: 0.2rem;
-  border: none;
-}
 
 #loginform button,
 #signupform button,
 #otpbox button {
-  width: 45%;
+  width: 30%;
   height: 1.8rem;
   border-radius: 0.3rem;
   border: none;
   background-color: #ffffff;
   font-weight: bold;
 }
+#loginform button:hover {
+  opacity: 0.8;
+}
 
+#signupform button:hover {
+  opacity: 0.8;
+}
+
+#otpbox button:hover {
+  opacity: 0.8;
+}
+
+.form-floating {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.form-floating label {
+  margin-left: 10%;
+}
+.form-floating input {
+  width: 80%;
+}
 /* otp */
 #otpbox {
   width: 40%;
@@ -97,17 +121,29 @@ main {
 }
 
 /* media query */
+
 @media (min-width: 310px) and (max-width: 500px) {
   #loginform,
   #signupform {
-    width: 70%;
-    height: 60vh;
+    width: 85%;
+    height: auto;
+    margin-top: 4rem;
+  }
+  #loginform label,
+  #signupform label {
+    margin-left: 10px;
+  }
+  .buttons {
+    width: 100%;
+  }
+  .buttons button {
+    width: 90%;
   }
   #loginform input,
   #signupform input,
   #otpbox input {
-    width: 80%;
-    height: 10%;
+    width: 95%;
+
     border-radius: 0.2rem;
     border: none;
   }
@@ -124,4 +160,168 @@ main {
   .name {
     display: none;
   }
+}
+
+/* home page css */
+
+.dropdown {
+  width: 15%;
+  margin-right: 1rem;
+}
+.dropdown button {
+  width: 100%;
+  height: auto;
+}
+.card {
+  margin-top: 6rem;
+  height: 40vh;
+}
+.card img {
+  object-fit: contain;
+  width: 100%;
+  height: 70%;
+}
+/* quiz selection container */
+.quiz-selection {
+  /* background-image: url(images/Screenshot\ 2024-12-12\ 101745.png);
+  background-size: cover;
+  background-repeat: no-repeat; */
+  width: 40%;
+  height: auto;
+  background-color: white;
+  margin: auto;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.quiz-selection div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 90%;
+  height: auto;
+  gap: 1rem;
+  justify-items: center;
+}
+.quiz-selection button {
+  border: none;
+}
+.question-selection {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.question-selection div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.question-selection button {
+  width: 10%;
+  height: 2rem;
+  border: 1px solid black;
+  border-radius: 0.2rem;
+}
+.question-selection button:hover {
+  opacity: 0.6;
+}
+.question-container {
+  /* background-image: url(images/Screenshot\ 2024-12-12\ 101745.png);
+  background-size: cover;
+  background-repeat: no-repeat; */
+  width: 40%;
+  height: auto;
+  background-color: white;
+  margin: auto;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
+.head {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px black solid;
+}
+.head h3,
+div {
+  padding: 0.5rem;
+}
+.head h3 + div {
+  width: 15%;
+  height: 2.5rem;
+  color: white;
+  background-color: black;
+  border-radius: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* .body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+} */
+.body ul {
+  list-style: none;
+  width: 100%;
+  text-align: center;
+}
+.body h5 {
+  padding: 1rem;
+}
+.options {
+  width: 95%;
+  height: 2.5rem;
+  background-color: lightgray;
+  margin-bottom: 1rem;
+  border-radius: 0.3rem;
+  vertical-align: middle;
+}
+.options:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+.correct {
+  border-color: #b7e1c1;
+  background: #d4edda;
+  color: #155724;
+}
+.in-correct {
+  border-color: #f4bec3;
+  background: #f8d7da;
+  color: #721c24;
+}
+.foot {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid black;
+  align-items: center;
+  padding: 1rem;
+}
+/* score */
+.score-div {
+  width: 40%;
+  height: auto;
+  background-color: white;
+  margin: auto;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.score-div img {
+  height: 15rem;
+  width: 100%;
+  object-fit: contain;
 }

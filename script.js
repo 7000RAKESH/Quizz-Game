@@ -80,9 +80,13 @@ function signup(userName, email, password) {
 
         if (postResponse.ok) {
           alert("Registration successful!");
+          localStorage.setItem("signup-email", email);
+          localStorage.setItem("signup-password", password);
           window.location.href = "./home.html";
         } else {
           alert("Failed to register. Please try again.");
+          localStorage.removeItem("signup-email");
+          localStorage.removeItem("signup-password");
         }
       } catch (error) {
         console.error("Error during registration:", error);
@@ -102,10 +106,14 @@ async function signin(input, password) {
   );
   if (user) {
     alert("login successfull");
+    localStorage.setItem("email", input);
+    localStorage.setItem("password", password);
     window.location.href = "./home.html";
     // window.open("./home.html");
   } else {
     alert("User not Found or Entered  Invalid Details ");
+    localStorage.removeItem("email");
+    localStorage.removeItem("password");
   }
 }
 loginSubmit.addEventListener("click", (e) => {
