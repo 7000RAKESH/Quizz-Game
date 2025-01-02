@@ -557,7 +557,7 @@ const questions = [
       {
         question: "What is the value of x if 3x + 5 = 20?",
         options: ["x = 5", "x = 3", "x = 2", "x = 10"],
-        correctOption: 2,
+        correctOption: 0,
       },
       {
         question: "How much is 15% of 200?",

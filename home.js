@@ -1,22 +1,52 @@
-let input = document.querySelector(".form-control");
-document.querySelector(".search").addEventListener("click", () => {
-  console.log("search");
-});
+// let input = document.querySelector(".form-control");
+// document.querySelector(".search").addEventListener("click", () => {
+//   console.log("search");
+// });
 
 let email = localStorage.getItem("email");
 let dropDown = document.querySelector(".btn");
 let signupEmail = localStorage.getItem("signup-email");
+let user = "";
 
-if (email == null) {
-  email = "Guest";
-  if (signupEmail) {
-    dropDown.innerHTML = `<i class="fa-solid fa-user"></i>&nbsp;&nbsp; ${signupEmail}`;
+let activeEmail = email || signupEmail || "Guest";
+
+for (let i = 0; i < activeEmail.length; i++) {
+  if (activeEmail[i] != "@") {
+    user += activeEmail[i];
   } else {
-    dropDown.innerHTML = `<i class="fa-solid fa-user"></i>&nbsp;&nbsp; ${email}`;
+    break;
   }
-} else {
-  dropDown.innerHTML = `<i class="fa-solid fa-user"></i>&nbsp;&nbsp; ${email}`;
 }
+
+dropDown.innerHTML = `<i class="fa-solid fa-user"></i>&nbsp;&nbsp; ${user}`;
+
+// if (email) {
+//   for (i = 0; i < email.length; i++) {
+//     if (email[i] != "@") {
+//       user += email[i];
+//     } else {
+//       break;
+//     }
+//   }
+// } else {
+//   for (i = 0; i < signupEmail.length; i++) {
+//     if (signupEmail[i] != "@") {
+//       user += signupEmail[i];
+//     } else {
+//       break;
+//     }
+//   }
+// }
+// if (email == null) {
+//   email = "Guest";
+//   if (signupEmail) {
+//     dropDown.innerHTML = `<i class="fa-solid fa-user"></i>&nbsp;&nbsp; ${user}`;
+//   } else {
+//     dropDown.innerHTML = `<i class="fa-solid fa-user"></i>&nbsp;&nbsp; ${email}`;
+//   }
+// } else {
+//   dropDown.innerHTML = `<i class="fa-solid fa-user"></i>&nbsp;&nbsp; ${user}`;
+// }
 
 document.querySelector(".logout").addEventListener("click", () => {
   localStorage.clear();
